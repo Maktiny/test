@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdint.h>
 
 // int main(){
 
@@ -14,24 +15,31 @@
 //   return 0;
 // }
 
-int function(int a,int b){
-  printf("result %d\n",a+b);
-   return a + b;
-}
+typedef struct CALL_RETURN {
+    uint64_t SPC;
+    uint64_t TPC;
+} CALL_RETURN;
+
+typedef struct cbc
+{
+  CALL_RETURN *call;
+} cbc;
+
+
 
 int main()
 {
-  int a[] = {1,2,3,4,5,6};
-  switch (a[0])
-  {
-  case 1:
-    function(1,1);
-    break;
-  case 2:
-    function(2,2);
-    break;
-  default:
-    break;
-  }
+
+  int e = 0;
+  cbc b;
+
+  struct CALL_RETURN c ;
+  c.SPC = 2;
+  b.call = &c;
+
+
+
+  printf("%ld\n",b.call->SPC);
+
   return 0;
 }
